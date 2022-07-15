@@ -1,22 +1,40 @@
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, List
 
 
-class Blog(BaseModel):
+class BlogSchema(BaseModel):
     title: str
     body: str
 
-class ShowBLog(Blog):
     class Config():
         orm_mode = True
 
 
-class User(BaseModel):
-    name : str
+class UserSchema(BaseModel):
+    name: str
     email: str
     password: str
 
-class ShowUser(User):
-    
+class ShowUserSchema(BaseModel):
+    name: str
+    email: str
+
+
+    class Config():
+        orm_mode = True
+
+class BaseUserSchema(BaseModel):
+    name: str
+    email: str
+    blog: List[BlogSchema]
+    class Config():
+        orm_mode = True
+
+
+class ShowBlogSchema(BaseModel):
+    title: str
+    body: str
+    created_by: ShowUserSchema
+
     class Config():
         orm_mode = True
