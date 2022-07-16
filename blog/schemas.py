@@ -1,5 +1,6 @@
+import email
 from pydantic import BaseModel
-from typing import Optional, List
+from typing import Optional, List, Union
 
 
 class BlogSchema(BaseModel):
@@ -38,3 +39,15 @@ class ShowBlogSchema(BaseModel):
 
     class Config():
         orm_mode = True
+
+class LoginSchema(BaseModel):
+    username: str
+    password: str
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+
+class TokenData(BaseModel):
+    email: Union[str, None] = None
