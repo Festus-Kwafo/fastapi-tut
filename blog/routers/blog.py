@@ -2,7 +2,7 @@ from typing import List
 from blog.schemas import ShowBlogSchema, BlogSchema
 
 from fastapi import APIRouter, Depends, status
-from blog.database import engine, SessionLocal, get_db
+from blog.database import some_engine, SessionLocal, get_db
 from sqlalchemy.orm import Session
 from ..repository import blog
 from blog.oauth import get_current_user
